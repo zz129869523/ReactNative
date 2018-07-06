@@ -3,7 +3,7 @@ import {
   StyleSheet,
   Text,
   View,
-  Button,
+  TouchableOpacity,
   TextInput,
 } from 'react-native';
 import UITextView from '../Components/UITextView'
@@ -16,6 +16,23 @@ export default class BMI extends Component {
       this.state = {
 
       }
+      this._onChangeHeight = this._onChangeHeight.bind(this);
+      this._onChangeWeight = this._onChangeWeight.bind(this);
+      this._handleCalc = this._handleCalc.bind(this);
+  }
+  _onChangeHeight (height) {
+
+    this.setState({height: height})
+  }
+  _onChangeWeight (weight) {
+
+    this.setState({weight: weight})
+  }
+  _handleCalc () {
+    var w = this.state.weight
+    var h = this.state.height / 100
+    var ans = w / (h * h)
+    this.setState({ans: ans})
   }
   static defaultProps() {
 
@@ -23,9 +40,17 @@ export default class BMI extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <View  style = {styles.UITextViewHeight}><UITextView  placeholder = '身高'/></View>
-        <View  style = {styles.UITextViewWidth}><UITextView  placeholder = '體重'/></View>
-        <Button style = {styles.button} title = '計算'/>
+        <View style = {styles.UITextViewHeight}><UITextView  placeholder = '身高' onChangeText={this._onChangeHeight}/></View>
+        <Text> {this.state.height} </Text>
+        <View style = {styles.UITextViewWeight}><UITextView  placeholder = '體重' onChangeText={this._onChangeWeight}/></View>
+        <Text> {this.state.weight} </Text>
+        <View style = {styles.buttonView}>
+        <TouchableOpacity style={styles.button} onPress={this._handleCalc}>
+          <Text style={styles.buttonText}> 計算 </Text>
+        </TouchableOpacity>
+        <Text> {this.state.ans} </Text>
+        </View>
+
       </View>
     );
   }
@@ -42,16 +67,25 @@ const styles = StyleSheet.create({
     marginRight: 30,
     backgroundColor: '#F5FCFF',
   },
-  UITextViewWidth: {
+  UITextViewWeight: {
     marginTop: 20,
     marginLeft: 30,
     marginRight: 30,
     backgroundColor: '#F5FCFF',
   },
   button: {
-    marginTop: 20,
-    borderColor: 'gray',
-    borderWidth: 1,
-    borderRadius: 5,
+    margin: 20,
+    padding: 10,
+    paddingLeft: 20,
+    paddingRight: 20,
+    backgroundColor: '#406E9F',
+    borderRadius: 9,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  buttonText: {
+    color: '#fff',
+    fontSize: 20,
+    fontWeight: 'bold',
   },
 });

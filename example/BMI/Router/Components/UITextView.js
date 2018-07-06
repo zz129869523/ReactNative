@@ -3,7 +3,7 @@ import {
   StyleSheet,
   Text,
   View,
-  TextInput
+  TextInput,
 } from 'react-native';
 
 export default class UITextView extends Component {
@@ -11,7 +11,8 @@ export default class UITextView extends Component {
   constructor(props) {
     super(props);
       this.state = {
-        placeholder: this.props.placeholder
+        placeholder: this.props.placeholder,
+        text: ''
       }
   }
   static defaultProps = {
@@ -24,8 +25,9 @@ export default class UITextView extends Component {
           style = {styles.textInput}
           placeholder = {this.state.placeholder}
           keyboardType = 'numeric'
-
+          onChangeText = {this.props.onChangeText}
         />
+
       </View>
     );
   }
@@ -34,7 +36,6 @@ export default class UITextView extends Component {
 const styles = StyleSheet.create({
   textInput: {
     flex: 1,
-
     borderColor: 'gray',
     borderWidth: 1,
     borderRadius: 5,
