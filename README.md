@@ -131,8 +131,9 @@ const styles = StyleSheet.create({
 
 ``` javascript
 // App.js
-
 import React, {Component} from 'react';
+import {Platform, StyleSheet, Text, View, TextInput, Button} from 'react-native';
+
 import BMI from './Router/Views/BMI'
 
 type Props = {};
@@ -143,18 +144,213 @@ export default class App extends Component<Props> {
     );
   }
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#F5FCFF',
+  },
+});
+
+```
+
+### 重新載入
+
+#### Android
+
+```
+按兩下 Ｒ 
+或者 command + M 的 reload
+```
+#### iOS
+```
+command + R
 ```
 
 <img src="./images/IMG006.png" width="350"> 
 
+成功之後我們去 BMI.js 建 View 吧
 
+進來先把 App 改成 BMI 不影響程式 可是我們比較好認
 
+``` javascript
+export default class BMI extends Component 
+```
 
+TextInput 有很多屬性可以用 可以去官網看 [TextInput](https://facebook.github.io/react-native/docs/textinput.html)
 
+常用的像是
 
+- placeholder 
+- value 					直接給值好像很沒有用 哈哈
+- onChangeText			改變值的時候會馬上傳給你 Type function
+- keyboardType			鍵盤類型
+- onFoucs					點到她的時候觸發function Type function
+- secureTextEntry		變＊＊＊
 
+來試看看吧
 
+修改一下 BMI.js 
 
+``` javascript
+// BMI.js
+
+import React, { Component } from 'react';
+import {
+  StyleSheet,
+  Text,
+  View,
+  TextInput,
+} from 'react-native';
+
+export default class BMI extends Component {
+
+  constructor(props) {
+    super(props);
+      this.state = {
+        text: 'I am value'
+      }
+  }
+  static defaultProps = {
+
+  }
+
+  _onChangeText(value) {
+
+    this.setState({text: value})
+
+  }
+  render() {
+    return (
+      <View style={styles.container}>
+        <TextInput
+          placeholder = "體重"
+          value = "123456"
+          onChangeText = {(value) => this._onChangeText(value)}
+        />
+        <Text>{this.state.text}</Text>
+      </View>
+    );
+  }
+}
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#F5FCFF',
+  },
+});
+```
+
+![](./images/video002.gif)
+
+state 是 ReactNative 拿來儲存變數資料用的
+
+所以一開始值是 123456 而 this.state.text是 'I am value'
+
+setState() 可以宣告值，修改值也可以
+
+當改動時 會叫到函數 _onChangeText()
+
+因為onchangeText是即時的 所以上面的text會馬上更改
+
+###Components
+
+不過現在又有個問題了 只是一個輸入匡就這麼大 之後看的人會很辛苦 所以我們把它寫一個專屬的元件吧
+
+我們在 Router 底下再建一個資料夾 Components 個人習慣所以叫做UITextView.js
+
+一樣page.js 貼上
+
+![](./images/IMG007.png)
+
+改成專門處理 UITextView 的元件
+
+```javascript 
+// UITextView.js
+
+import React, { Component } from 'react';
+import {
+  StyleSheet,
+  Text,
+  View,
+  TextInput,
+} from 'react-native';
+
+export default class UITextView extends Component {
+
+  constructor(props) {
+    super(props);
+      this.state = {
+
+      }
+  }
+  static defaultProps = {
+
+  }
+  render() {
+    return (
+      <View>
+        <TextInput
+          placeholder = "體重"
+          keyboardType = 'numeric'
+        />
+
+      </View>
+    );
+  }
+}
+
+const styles = StyleSheet.create({
+
+});
+```
+BMI.js 也一起改
+
+```javascript 
+import React, { Component } from 'react';
+import {
+  StyleSheet,
+  Text,
+  View,
+} from 'react-native';
+import UITextView from '../Components/UITextView'
+export default class BMI extends Component {
+
+  constructor(props) {
+    super(props);
+      this.state = {
+      }
+  }
+  static defaultProps = {
+
+  }
+
+  render() {
+    return (
+      <View style={styles.container}>
+        <UITextView />
+      </View>
+    );
+  }
+}
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#F5FCFF',
+  },
+});
+```
+跑看看
+
+![](./images/video003.gif)
 
 
 
