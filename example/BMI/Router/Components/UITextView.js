@@ -5,7 +5,6 @@ import {
   View,
   TextInput,
 } from 'react-native';
-
 export default class UITextView extends Component {
 
   constructor(props) {
