@@ -353,20 +353,26 @@ const styles = StyleSheet.create({
 ![](./images/video003.gif)
 
 
-### 排版 And 樣式
+### 排版
 
 用這麼久終於到很重要的排版與樣式了 
 
 React Native 佈局方式是 FlexBox
 
-### 排版
-
 學這麼久一定對下面 styles 的
-``` html 
+``` 
 justifyContent: 'center',
  alignItems: 'center',
 ```
 很有疑問吧
+
+排版分這四大類 
+
+- flexDirection enum('row', 'column','row-reverse','column-reverse')
+- flexWrap enum('wrap', 'nowrap')
+- justifyContent enum('flex-start', 'flex-end', 'center', 'space-between', 'space-around')
+- alignItems enum('flex-start', 'flex-end', 'center', 'stretch')
+
 
 為了學會排版 我寫了一個 View
 
@@ -443,7 +449,7 @@ alignItems enum('flex-start', 'flex-end', 'center', 'stretch')
 
 <img src="./images/IMG016.png" width="350">
 
-所以兩個一起來當然可以囉
+所以兩個一起來當然也可以囉
 
 <img src="./images/IMG017.png" width="350">
 
@@ -472,7 +478,100 @@ alignItems enum('flex-start', 'flex-end', 'center', 'stretch')
 
 <img src="./images/IMG019.png" width="350">
 
+# 最後了 加油
 
+除了以上的那幾個格子還是不夠用的 就差樓下幾樣東西了
+
+#### 圖示邊匡
+
+我習慣性直翻 哈哈
+
+- borderBottomWidth number  邊邊底部寬度
+- borderLeftWidth number 邊邊左邊寬度
+- borderRightWidth number 邊邊右邊寬度
+- borderTopWidth number 邊邊上面寬度
+- borderWidth number 邊邊寬度
+- borderBottomColor 'red' '#2fb32a' 邊邊底部顏色
+- borderLeftColor 邊邊左邊顏色
+- borderRightColor 邊邊右邊顏色
+- borderTopColor 邊邊上面顏色
+- borderColor 邊邊顏色
+- borderRadius 邊邊圓形程度
+
+#### 尺寸
+
+- width number
+- height number
+
+#### 外邊距
+
+- margin number 外邊距
+- marginTop number 上外邊距
+- marginBottom number 下外邊距
+- marginLeft number 左外邊距
+- marginRight number 右外邊距
+- marginVertical number 上下外邊距
+- marginHorizontal number 左右外邊距
+
+
+#### 內邊距
+
+- padding number 內邊距
+- paddingTop number 上內邊距
+- paddingBottom number 下內邊距
+- paddingLeft number 左內邊距
+- paddingRight number 右內邊距
+- paddingVertical number 上下內邊距
+- paddingHorizontal number 左右內邊距
+
+馬上來個例句吧
+
+``` html
+<View style={{flex: 1,backgroundColor: '#F5FCFF',}}>
+	<View style={{height: 100}}>
+		<TextInput style={{flex:1, borderWidth: 3, borderColor: 'blue', borderRadius: 10}}/>
+	</View>
+</View>
+```
+
+看這醜醜的輸入匡 有著 寬度: 3 的藍色邊邊，flex:1 讓他佔滿整個 view 
+
+
+<img src="./images/IMG020.png" width="350">
+
+當然你也可以單獨加厚某一邊或換顏色
+
+``` html
+<View style={{flex: 1,backgroundColor: '#F5FCFF',}}>
+	<View style={{height: 100}}>
+		<TextInput style={{flex:1, borderWidth: 3, borderLeftWidth: 50, borderRightColor: 'yellow', borderColor: 'blue', borderRadius: 10, }}/>
+	</View>
+</View>
+```
+
+<img src="./images/IMG021.png" width="350">
+
+### margin 和 padding
+
+``` html
+<View style={{flex: 1,backgroundColor: '#F5FCFF'}}>
+	<View style={{height: 100 ,marginTop: 50,backgroundColor: 'red'}}>
+		<TextInput style={{flex:1, borderWidth: 3, borderColor: 'blue', borderRadius: 10}}  value='marginTop: 50'/>
+	</View>
+</View>
+```
+<img src="./images/IMG022.png" width="350">
+
+``` html
+<View style={{flex: 1,backgroundColor: '#F5FCFF'}}>
+	<View style={{height: 100 ,paddingTop: 50,backgroundColor: 'red'}}>
+		<TextInput style={{flex:1, borderWidth: 3, borderColor: 'blue', borderRadius: 10}}  value='paddingTop: 50'/>
+	</View>
+</View>
+```
+<img src="./images/IMG023.png" width="350">
+
+### 太棒了 你學會了所以的畫面配置了 趕快繼續完成我們的 BMI
 
 
 
