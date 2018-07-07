@@ -4,6 +4,8 @@
 
 React Native 的中文教學實在太少，這邊先教大家最基礎的，架設環境的部分之後會在慢慢補上
 
+如果喜歡我的教學可以給我一顆 Star 讓我有動力繼續寫下去到進階。
+
 先從最經典的 BMI 開始吧！
 
 ### BMI
@@ -51,7 +53,7 @@ React Native 的中文教學實在太少，這邊先教大家最基礎的，架�
 
 成功之後大家應該會看到這樣
 
-![Alt Image Text](./images/IMG001.png "Optional Title")
+![](./images/IMG001.png)
 
 成功之後就來看程式碼吧
 
@@ -59,9 +61,55 @@ React Native 的中文教學實在太少，這邊先教大家最基礎的，架�
 
 開啟目錄下的 App.js
 
-![Alt Image Text](./images/IMG002.png "Optional Title")
+![](./images/IMG002.png)
 
-![Alt Image Text](./images/IMG003.png "Optional Title")
+![](./images/IMG003.png)
+
+ReactNative 也有生命週期，如果有興趣可以去 google 查一下
+
+其中 render() 是他的進入點，裡面是它呈現在畫面上的元件 
+
+要用什麼元件就 import 什麼進來
+
+因為我們要做 BMI 所以需要 兩個輸入匡 和 一個按鈕
+
+我們當然可以直接改成這樣
+
+``` javascript
+import React, {Component} from 'react';
+import {Platform, StyleSheet, Text, View, TextInput, Button} from 'react-native';
+
+type Props = {};
+export default class App extends Component<Props> {
+  render() {
+    return (
+      <View style={styles.container}>
+        <TextInput placeholder = '身高'/>
+        <TextInput placeholder = '體重'/>
+
+        <Button title='計算' />
+      </View>
+    );
+  }
+}
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#F5FCFF',
+  },
+});
+
+```
+
+
+![](./images/video001.gif)
+
+
+
+
 
 
 
