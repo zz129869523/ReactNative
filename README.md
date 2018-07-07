@@ -571,7 +571,232 @@ alignItems enum('flex-start', 'flex-end', 'center', 'stretch')
 ```
 <img src="./images/IMG023.png" width="350">
 
-### 太棒了 你學會了所以的畫面配置了 趕快繼續完成我們的 BMI
+### 太棒了 你學會了大部分的畫面配置了 趕快繼續完成我們的 BMI
+
+先將 BMI.js 下面的置中拿掉
+
+``` javascript
+// BMI.js
+
+import React, { Component } from 'react';
+import {
+  StyleSheet,
+  Text,
+  View,
+  TextInput,
+} from 'react-native';
+import UITextView from '../Components/UITextView'
+export default class BMI extends Component {
+
+  constructor(props) {
+    super(props);
+      this.state = {
+      }
+  }
+  static defaultProps = {
+
+  }
+
+  render() {
+    return (
+      <View style={styles.container}>
+        <UITextView />
+      </View>
+    );
+  }
+}
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#F5FCFF',
+  },
+});
+```
+來做 TextInput 的 UI 吧
+
+```javascript
+//UITextView.js
+
+import React, { Component } from 'react';
+import {
+  StyleSheet,
+  Text,
+  View,
+  TextInput,
+} from 'react-native';
+
+export default class UITextView extends Component {
+
+  constructor(props) {
+    super(props);
+      this.state = {
+
+      }
+  }
+  static defaultProps = {
+
+  }
+  render() {
+    return (
+      <View style={styles.view}>
+        <TextInput
+          style={styles.textInput}
+          placeholder = "體重"
+          keyboardType = 'numeric'
+        />
+
+      </View>
+    );
+  }
+}
+
+const styles = StyleSheet.create({
+  textInput: {
+    flex: 1,
+    borderColor: 'gray',
+    borderWidth: 1,
+    borderRadius: 5,
+    },
+  view: {
+    height: 40,
+  },
+});
+```
+
+<img src="./images/IMG024.png" width="350">
+
+好像太上面了. 在 BMI.js 為他做約束
+
+``` javascript
+// BMI.js
+
+import React, { Component } from 'react';
+import {
+  StyleSheet,
+  Text,
+  View,
+  TextInput,
+} from 'react-native';
+import UITextView from '../Components/UITextView'
+export default class BMI extends Component {
+
+  constructor(props) {
+    super(props);
+      this.state = {
+      }
+  }
+  static defaultProps = {
+
+  }
+
+  render() {
+    return (
+      <View style={styles.container}>
+        <View style = {styles.UITextViewHeight}><UITextView /></View>
+      </View>
+    );
+  }
+}
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#F5FCFF',
+  },
+  UITextViewHeight: {
+    marginTop: 100,
+    marginLeft: 30,
+    marginRight: 30,
+    backgroundColor: '#F5FCFF',
+  },
+});
+
+```
+
+
+<img src="./images/IMG025.png" width="350">
+
+把其他元件加上去
+
+``` javascript
+//BMI.js
+
+import React, { Component } from 'react';
+import {
+  StyleSheet,
+  Text,
+  View,
+  TextInput,
+  Button,
+} from 'react-native';
+import UITextView from '../Components/UITextView'
+export default class BMI extends Component {
+
+  constructor(props) {
+    super(props);
+      this.state = {
+      }
+  }
+  static defaultProps = {
+
+  }
+
+  render() {
+    return (
+      <View style={styles.container}>
+        <View style = {styles.UITextViewHeight}><UITextView /></View>
+        <View style = {styles.UITextViewWeight}><UITextView /></View>
+
+        <Button title='計算'/>
+      </View>
+    );
+  }
+}
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#F5FCFF',
+  },
+  UITextViewHeight: {
+    marginTop: 100,
+    marginLeft: 30,
+    marginRight: 30,
+    backgroundColor: '#F5FCFF',
+  },
+  UITextViewWeight: {
+    marginTop: 30,
+    marginLeft: 30,
+    marginRight: 30,
+    backgroundColor: '#F5FCFF',
+  },
+});
+```
+
+<img src="./images/IMG026.png" width="350">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
