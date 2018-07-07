@@ -11,7 +11,6 @@ export default class UITextView extends Component {
     super(props);
       this.state = {
         placeholder: this.props.placeholder,
-        text: ''
       }
   }
   static defaultProps = {
@@ -26,7 +25,6 @@ export default class UITextView extends Component {
           keyboardType = 'numeric'
           onChangeText = {this.props.onChangeText}
         />
-
       </View>
     );
   }
