@@ -4,7 +4,14 @@
 
 React Native 的中文教學實在太少，這邊先教大家最基礎的，架設環境的部分之後會再慢慢補上
 
+如果喜歡我的教學可以給我一顆 Star 讓我有動力繼續寫下去到進階。
+
 先從最經典的 BMI 開始吧！
+
+
+![](./images/video005.gif)
+
+![](./images/video006.gif)
 
 ### BMI
 
@@ -774,27 +781,839 @@ const styles = StyleSheet.create({
 
 <img src="./images/IMG026.png" width="350">
 
+<img src="./images/IMG027.png" width="350">
 
 
+Button 隨然好用 可是在兩個系統中長得不一樣
 
+為了能夠一樣我們要自己做一個
 
+``` javascript 
+// BMI.js
 
+import React, { Component } from 'react';
+import {
+  StyleSheet,
+  Text,
+  View,
+  TextInput,
+  TouchableOpacity,
+} from 'react-native';
+import UITextView from '../Components/UITextView'
+export default class BMI extends Component {
 
+  constructor(props) {
+    super(props);
+      this.state = {
+      }
+  }
+  static defaultProps = {
 
+  }
 
+  render() {
+    return (
+      <View style={styles.container}>
+        <View style = {styles.UITextViewHeight}><UITextView /></View>
+        <View style = {styles.UITextViewWeight}><UITextView /></View>
 
+        <TouchableOpacity style={styles.button}>
+          <Text style={styles.buttonText}> 計算 </Text>
+        </TouchableOpacity>
+      </View>
+    );
+  }
+}
 
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#F5FCFF',
+  },
+  UITextViewHeight: {
+    marginTop: 100,
+    marginLeft: 30,
+    marginRight: 30,
+    backgroundColor: '#F5FCFF',
+  },
+  UITextViewWeight: {
+    marginTop: 30,
+    marginLeft: 30,
+    marginRight: 30,
+    backgroundColor: '#F5FCFF',
+  },
+  button: {
+    margin: 20,
+    marginTop: 30,
+    padding: 10,
+    paddingLeft: 20,
+    paddingRight: 20,
+    backgroundColor: '#406E9F',
+    borderRadius: 9,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  buttonText: {
+    color: '#fff',
+    fontSize: 20,
+    fontWeight: 'bold',
+  },
+});
+```
 
+<img src="./images/IMG028.png" width="350">
+<img src="./images/IMG029.png" width="350">
 
+畫面統一了之後就剩下船傳值囉～～
 
+### 傳值
 
+React Native 再傳值上做得還蠻好懂的
 
+props 跟 state 
 
+用法完全一模一樣 差別在一個是別人傳進來的值 一個是自己在用的
 
+這講解比較難懂 直接實作吧
 
+在 <UITextView /> 裡隨便加個參數跟值
 
+``` html
+<View style = {styles.UITextViewHeight}><UITextView aaba = '左右左'/></View>
+```
 
+再跑去 UITextView.js 裡改一下
 
+```
+placeholder = {this.props.aaba}
+```
 
+<img src="./images/IMG030.png" width="350">
 
+值馬上就過去了 
 
+而
+
+```
+static defaultProps = {
+
+}
+```
+
+是萬一沒有傳入值 那就給它預設值
+
+把兩邊程式碼通整一下
+
+``` javascript 
+//BMI.js
+
+import React, { Component } from 'react';
+import {
+  StyleSheet,
+  Text,
+  View,
+  TextInput,
+  TouchableOpacity,
+} from 'react-native';
+import UITextView from '../Components/UITextView'
+export default class BMI extends Component {
+
+  constructor(props) {
+    super(props);
+      this.state = {
+      }
+  }
+  static defaultProps = {
+
+  }
+
+  render() {
+    return (
+      <View style={styles.container}>
+        <View style = {styles.UITextViewHeight}><UITextView placeholder = '身高'/></View>
+        <View style = {styles.UITextViewWeight}><UITextView placeholder = '體重'/></View>
+
+        <TouchableOpacity style={styles.button}>
+          <Text style={styles.buttonText}> 計算 </Text>
+        </TouchableOpacity>
+      </View>
+    );
+  }
+}
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#F5FCFF',
+  },
+  UITextViewHeight: {
+    marginTop: 100,
+    marginLeft: 30,
+    marginRight: 30,
+    backgroundColor: '#F5FCFF',
+  },
+  UITextViewWeight: {
+    marginTop: 30,
+    marginLeft: 30,
+    marginRight: 30,
+    backgroundColor: '#F5FCFF',
+  },
+  button: {
+    margin: 20,
+    marginTop: 30,
+    padding: 10,
+    paddingLeft: 20,
+    paddingRight: 20,
+    backgroundColor: '#406E9F',
+    borderRadius: 9,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  buttonText: {
+    color: '#fff',
+    fontSize: 20,
+    fontWeight: 'bold',
+  },
+});
+```
+``` javascript
+//UITextView.js 
+
+import React, { Component } from 'react';
+import {
+  StyleSheet,
+  Text,
+  View,
+  TextInput,
+} from 'react-native';
+
+export default class UITextView extends Component {
+
+  constructor(props) {
+    super(props);
+      this.state = {
+        placeholder: this.props.placeholder
+      }
+  }
+  static defaultProps = {
+	placeholder: 'I am placeholder'
+  }
+  render() {
+    return (
+      <View style={styles.view}>
+        <TextInput
+          style={styles.textInput}
+          placeholder = {this.state.placeholder}
+          keyboardType = 'numeric'
+        />
+
+      </View>
+    );
+  }
+}
+
+const styles = StyleSheet.create({
+  textInput: {
+    flex: 1,
+    borderColor: 'gray',
+    borderWidth: 1,
+    borderRadius: 5,
+    },
+  view: {
+    height: 40,
+  },
+});
+
+```
+
+<img src="./images/IMG031.png" width="350">
+
+再來只要把值傳回來做BMI的計算就完成了
+
+在 BMI.js 建兩個函數，跟剛剛傳值一樣 只是變成傳的是函數 如下
+
+``` javascript
+// BMI.js
+
+import React, { Component } from 'react';
+import {
+  StyleSheet,
+  Text,
+  View,
+  TextInput,
+  TouchableOpacity,
+} from 'react-native';
+import UITextView from '../Components/UITextView'
+export default class BMI extends Component {
+
+  constructor(props) {
+    super(props);
+      this.state = {
+      }
+      this._onChangeHeight = this._onChangeHeight.bind(this);
+      this._onChangeWeight = this._onChangeWeight.bind(this);
+  }
+  static defaultProps = {
+
+  }
+  _onChangeHeight (height) {
+
+    this.setState({height: height})
+  }
+  _onChangeWeight (weight) {
+
+    this.setState({weight: weight})
+  }
+  render() {
+    return (
+      <View style={styles.container}>
+        <View style = {styles.UITextViewHeight}><UITextView placeholder = '身高' onChangeText={this._onChangeHeight}/></View>
+        <View style = {styles.UITextViewWeight}><UITextView placeholder = '體重' onChangeText={this._onChangeWeight}/></View>
+
+        <TouchableOpacity style={styles.button}>
+          <Text style={styles.buttonText}> 計算 </Text>
+        </TouchableOpacity>
+      </View>
+    );
+  }
+}
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#F5FCFF',
+  },
+  UITextViewHeight: {
+    marginTop: 100,
+    marginLeft: 30,
+    marginRight: 30,
+    backgroundColor: '#F5FCFF',
+  },
+  UITextViewWeight: {
+    marginTop: 30,
+    marginLeft: 30,
+    marginRight: 30,
+    backgroundColor: '#F5FCFF',
+  },
+  button: {
+    margin: 20,
+    marginTop: 30,
+    padding: 10,
+    paddingLeft: 20,
+    paddingRight: 20,
+    backgroundColor: '#406E9F',
+    borderRadius: 9,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  buttonText: {
+    color: '#fff',
+    fontSize: 20,
+    fontWeight: 'bold',
+  },
+});
+
+```
+
+比較特別的是 .bind(this)
+
+```javascript
+this._onChangeHeight = this._onChangeHeight.bind(this);
+this._onChangeWeight = this._onChangeWeight.bind(this);
+```
+因為他不知道 this 是誰，所以要綁 this 給它，不然會報錯
+
+好了之後在 UITextView.js 加上 `onChangeText = {this.props.onChangeText}`
+ 
+為了確定值有回來 加個 Text
+
+``` javascript
+//BMI.js 
+
+import React, { Component } from 'react';
+import {
+  StyleSheet,
+  Text,
+  View,
+  TextInput,
+  TouchableOpacity,
+} from 'react-native';
+import UITextView from '../Components/UITextView'
+export default class BMI extends Component {
+
+  constructor(props) {
+    super(props);
+      this.state = {
+      }
+      this._onChangeHeight = this._onChangeHeight.bind(this);
+      this._onChangeWeight = this._onChangeWeight.bind(this);
+  }
+  static defaultProps = {
+
+  }
+  _onChangeHeight (height) {
+
+    this.setState({height: height})
+  }
+  _onChangeWeight (weight) {
+
+    this.setState({weight: weight})
+  }
+  render() {
+    return (
+      <View style={styles.container}>
+        <View style = {styles.UITextViewHeight}><UITextView placeholder = '身高' onChangeText={this._onChangeHeight}/></View>
+          <Text>{this.state.height}</Text>
+        <View style = {styles.UITextViewWeight}><UITextView placeholder = '體重' onChangeText={this._onChangeWeight}/></View>
+          <Text>{this.state.weight}</Text>
+        <TouchableOpacity style={styles.button}>
+          <Text style={styles.buttonText}> 計算 </Text>
+        </TouchableOpacity>
+      </View>
+    );
+  }
+}
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#F5FCFF',
+  },
+  UITextViewHeight: {
+    marginTop: 100,
+    marginLeft: 30,
+    marginRight: 30,
+    backgroundColor: '#F5FCFF',
+  },
+  UITextViewWeight: {
+    marginTop: 30,
+    marginLeft: 30,
+    marginRight: 30,
+    backgroundColor: '#F5FCFF',
+  },
+  button: {
+    margin: 20,
+    marginTop: 30,
+    padding: 10,
+    paddingLeft: 20,
+    paddingRight: 20,
+    backgroundColor: '#406E9F',
+    borderRadius: 9,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  buttonText: {
+    color: '#fff',
+    fontSize: 20,
+    fontWeight: 'bold',
+  },
+});
+```
+
+![](./images/video004.gif)
+
+有了之後 幫按鈕加上觸發事件 
+
+``` javascript
+<TouchableOpacity style={styles.button} onPress={this._handleCalc}>
+	<Text style={styles.buttonText}> 計算 </Text>
+</TouchableOpacity>
+```
+
+``` javascript
+_handleCalc () {
+	var { height, weight } = this.state;
+	var h = height / 100;
+	var ans = (weight / (h * h)).toFixed(2);  // 變成小數點後第二位
+	
+	var ansStr = 'your BMI: ' + ans  //直接加就轉成 String 了 方便
+	this.setState({ansStr: ansStr})
+}
+```
+
+也別忘了加 `this._handleCalc = this._handleCalc.bind(this);`
+
+你也可以故意錯一下看錯誤代碼 以後就不會忘了
+
+``` javascript
+// BMI.js
+
+import React, { Component } from 'react';
+import {
+  StyleSheet,
+  Text,
+  View,
+  TextInput,
+  TouchableOpacity,
+} from 'react-native';
+import UITextView from '../Components/UITextView'
+export default class BMI extends Component {
+
+  constructor(props) {
+    super(props);
+      this.state = {
+      }
+      this._onChangeHeight = this._onChangeHeight.bind(this);
+      this._onChangeWeight = this._onChangeWeight.bind(this);
+      this._handleCalc = this._handleCalc.bind(this);
+  }
+  static defaultProps = {
+
+  }
+  _onChangeHeight (height) {
+
+    this.setState({height: height})
+  }
+  _onChangeWeight (weight) {
+
+    this.setState({weight: weight})
+  }
+  _handleCalc () {
+    var { height, weight } = this.state;
+    var h = height / 100;
+    var ans = (weight / (h * h)).toFixed(2);  // 變成小數點後第二位
+
+    var ansStr = 'your BMI: ' + ans  //直接加就變字串型態了 方便
+    this.setState({ansStr: ansStr})
+  }
+  render() {
+    return (
+      <View style={styles.container}>
+        <View style = {styles.UITextViewHeight}><UITextView placeholder = '身高' onChangeText={this._onChangeHeight}/></View>
+        <View style = {styles.UITextViewWeight}><UITextView placeholder = '體重' onChangeText={this._onChangeWeight}/></View>
+        <TouchableOpacity style={styles.button} onPress={this._handleCalc}>
+          <Text style={styles.buttonText}> 計算 </Text>
+        </TouchableOpacity>
+        <Text>{this.state.ansStr}</Text>
+      </View>
+    );
+  }
+}
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#F5FCFF',
+  },
+  UITextViewHeight: {
+    marginTop: 100,
+    marginLeft: 30,
+    marginRight: 30,
+    backgroundColor: '#F5FCFF',
+  },
+  UITextViewWeight: {
+    marginTop: 30,
+    marginLeft: 30,
+    marginRight: 30,
+    backgroundColor: '#F5FCFF',
+  },
+  button: {
+    margin: 20,
+    marginTop: 30,
+    padding: 10,
+    paddingLeft: 20,
+    paddingRight: 20,
+    backgroundColor: '#406E9F',
+    borderRadius: 9,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  buttonText: {
+    color: '#fff',
+    fontSize: 20,
+    fontWeight: 'bold',
+  },
+});
+```
+
+最後的最後因為鍵盤不會收起來 所以要 import 兩樣東西
+
+`import dismissKeyboard from 'dismissKeyboard';  // 收鍵盤`
+
+用法簡單 `dismissKeyboard();` 這樣就收了
+
+第二個是 `TouchableWithoutFeedback` 
+
+### React Native 手勢
+
+React Native 手勢總共有四種
+
+- TouchableHightLight
+- TouchableNativeFeedback(仅限Android)
+- TouchableOpacity
+- TouchableWithoutFeedback
+
+而其中的 TouchableWithoutFeedback 是點下時沒有任何效果的 正是我們需要的
+
+基本用法
+
+- onPressIn = function()	按下時
+- onPressOut = function() 	放開時       
+- onPress = function()    按一下     
+- onLongPress = function()  長按       
+
+終於 我們成功了
+
+``` javascript 
+import React, { Component } from 'react';
+import {
+  StyleSheet,
+  Text,
+  View,
+  TextInput,
+  TouchableOpacity,
+  TouchableWithoutFeedback,
+} from 'react-native';
+import dismissKeyboard from 'dismissKeyboard';  // 收鍵盤
+import UITextView from '../Components/UITextView'
+export default class BMI extends Component {
+
+  constructor(props) {
+    super(props);
+      this.state = {
+      }
+      this._onChangeHeight = this._onChangeHeight.bind(this);
+      this._onChangeWeight = this._onChangeWeight.bind(this);
+      this._handleCalc = this._handleCalc.bind(this);
+  }
+  static defaultProps = {
+
+  }
+  _onChangeHeight (height) {
+
+    this.setState({height: height})
+  }
+  _onChangeWeight (weight) {
+
+    this.setState({weight: weight})
+  }
+  _onPress() {
+    dismissKeyboard();
+  }
+  _handleCalc () {
+    var { height, weight } = this.state;
+    var h = height / 100;
+    var ans = (weight / (h * h)).toFixed(2);  // 變成小數點後第二位
+
+    var ansStr = 'your BMI: ' + ans  //直接加就變字串型態了 方便
+    this.setState({ansStr: ansStr})
+  }
+  render() {
+    return (
+      <TouchableWithoutFeedback onPress = {this._onPress}  style={{flex: 1}}>
+        <View style={styles.container}>
+          <View style = {styles.UITextViewHeight}><UITextView placeholder = '身高' onChangeText={this._onChangeHeight}/></View>
+          <View style = {styles.UITextViewWeight}><UITextView placeholder = '體重' onChangeText={this._onChangeWeight}/></View>
+          <TouchableOpacity style={styles.button} onPress={this._handleCalc}>
+            <Text style={styles.buttonText}> 計算 </Text>
+          </TouchableOpacity>
+          <Text>{this.state.ansStr}</Text>
+        </View>
+      </TouchableWithoutFeedback>
+    );
+  }
+}
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#F5FCFF',
+  },
+  UITextViewHeight: {
+    marginTop: 100,
+    marginLeft: 30,
+    marginRight: 30,
+    backgroundColor: '#F5FCFF',
+  },
+  UITextViewWeight: {
+    marginTop: 30,
+    marginLeft: 30,
+    marginRight: 30,
+    backgroundColor: '#F5FCFF',
+  },
+  button: {
+    margin: 20,
+    marginTop: 30,
+    padding: 10,
+    paddingLeft: 20,
+    paddingRight: 20,
+    backgroundColor: '#406E9F',
+    borderRadius: 9,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  buttonText: {
+    color: '#fff',
+    fontSize: 20,
+    fontWeight: 'bold',
+  },
+});
+```
+
+![](./images/video005.gif)
+
+![](./images/video006.gif)
+
+最後別忘了整理所有的 code 哦
+
+沒用到的刪一刪
+
+``` javascript
+// App.js
+
+import React, {Component} from 'react';
+import BMI from './Router/Views/BMI'
+
+export default class App extends Component {
+  render() {
+    return (
+      <BMI />
+    );
+  }
+}
+```
+
+``` javascript
+// BMI.js
+
+import React, { Component } from 'react';
+import {
+  StyleSheet,
+  Text,
+  View,
+  TextInput,
+  TouchableOpacity,
+  TouchableWithoutFeedback,
+} from 'react-native';
+import dismissKeyboard from 'dismissKeyboard';  // 收鍵盤
+import UITextView from '../Components/UITextView'
+export default class BMI extends Component {
+
+  constructor(props) {
+    super(props);
+      this.state = {
+      }
+      this._onChangeHeight = this._onChangeHeight.bind(this);
+      this._onChangeWeight = this._onChangeWeight.bind(this);
+      this._handleCalc = this._handleCalc.bind(this);
+  }
+
+  _onChangeHeight (height) {
+
+    this.setState({height: height})
+  }
+  _onChangeWeight (weight) {
+
+    this.setState({weight: weight})
+  }
+  _onPress() {
+    dismissKeyboard();
+  }
+  _handleCalc () {
+    var { height, weight } = this.state;
+    var h = height / 100;
+    var ans = (weight / (h * h)).toFixed(2);  // 變成小數點後第二位
+
+    var ansStr = 'your BMI: ' + ans  //直接加就變字串型態了 方便
+    this.setState({ansStr: ansStr})
+  }
+  render() {
+    return (
+      <TouchableWithoutFeedback onPress = {this._onPress}  style={{flex: 1}}>
+        <View style={styles.container}>
+          <View style = {styles.UITextViewHeight}><UITextView placeholder = '身高' onChangeText={this._onChangeHeight}/></View>
+          <View style = {styles.UITextViewWeight}><UITextView placeholder = '體重' onChangeText={this._onChangeWeight}/></View>
+          <TouchableOpacity style={styles.button} onPress={this._handleCalc}>
+            <Text style={styles.buttonText}> 計算 </Text>
+          </TouchableOpacity>
+          <Text>{this.state.ansStr}</Text>
+        </View>
+      </TouchableWithoutFeedback>
+    );
+  }
+}
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#F5FCFF',
+  },
+  UITextViewHeight: {
+    marginTop: 100,
+    marginLeft: 30,
+    marginRight: 30,
+    backgroundColor: '#F5FCFF',
+  },
+  UITextViewWeight: {
+    marginTop: 30,
+    marginLeft: 30,
+    marginRight: 30,
+    backgroundColor: '#F5FCFF',
+  },
+  button: {
+    margin: 20,
+    marginTop: 30,
+    padding: 10,
+    paddingLeft: 20,
+    paddingRight: 20,
+    backgroundColor: '#406E9F',
+    borderRadius: 9,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  buttonText: {
+    color: '#fff',
+    fontSize: 20,
+    fontWeight: 'bold',
+  },
+});
+```
+
+``` javascript
+// UITextView
+
+import React, { Component } from 'react';
+import {
+  StyleSheet,
+  Text,
+  View,
+  TextInput,
+} from 'react-native';
+export default class UITextView extends Component {
+
+  constructor(props) {
+    super(props);
+      this.state = {
+        placeholder: this.props.placeholder
+      }
+  }
+  static defaultProps = {
+    placeholder: 'I am placeholder'
+  }
+  render() {
+    return (
+      <View style={styles.view}>
+        <TextInput
+          style={styles.textInput}
+          placeholder = {this.state.placeholder}
+          keyboardType = 'numeric'
+          onChangeText = {this.props.onChangeText}
+        />
+
+      </View>
+    );
+  }
+}
+
+const styles = StyleSheet.create({
+  textInput: {
+    flex: 1,
+    borderColor: 'gray',
+    borderWidth: 1,
+    borderRadius: 5,
+    },
+  view: {
+    height: 40,
+  },
+});
+```
