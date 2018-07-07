@@ -451,19 +451,21 @@ alignItems enum('flex-start', 'flex-end', 'center', 'stretch')
 
 用 flex 來分配整個畫面的比例 
 
-``` javascript
+``` html
 <View style={{flex: 1, }}>
+
 	<View style={{flex: 1,justifyContent: 'center',alignItems: 'center',backgroundColor: 'skyblue',}}>
-     	<View style={{width: 200,height: 100,justifyContent: 'center',alignItems: 'center',backgroundColor: 'red'}}>
-         	<Text style = {{color: 'white',}}>flex: 1</Text>
-      	</View>
-  	</View>
+		<View style={{width: 200,height: 100,justifyContent: 'center',alignItems: 'center',backgroundColor: 'red'}}>
+     		<Text style = {{color: 'white',}}>flex: 1</Text>
+		</View>
+	</View>
 
   	<View style={{flex: 1,justifyContent: 'center',alignItems: 'center',backgroundColor: 'yellow',}}>
     	<View style={{width: 200,height: 100,justifyContent: 'center',alignItems: 'center',backgroundColor: 'red'}}>
     		<Text style = {{color: 'white',}}>flex: 1</Text>
      	</View>
   	</View>
+  	
 </View>
 ```
 <img src="./images/IMG018.png" width="350">
