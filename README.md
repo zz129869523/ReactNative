@@ -359,7 +359,7 @@ const styles = StyleSheet.create({
 
 React Native 佈局方式是 FlexBox
 
-#### 排版
+### 排版
 
 學這麼久一定對下面 styles 的
 ```javascript 
@@ -370,7 +370,7 @@ justifyContent: 'center',
 
 為了學會排版 我寫了一個 View
 
-##### justifyContent
+### justifyContent
 
 
 ``` javascript
@@ -389,7 +389,7 @@ justifyContent 是負責 `垂直` 的
 
 第一個 View 規定裡面的 View 必須在 flex-start 的位置上
 
-裡面的 View 規定臉面的 Text 必須 在正中間
+第二個 View 規定裡面的 Text 必須 在正中間
 
 justifyContent enum('flex-start', 'flex-end', 'center', 'space-between', 'space-around')
 
@@ -397,9 +397,11 @@ justifyContent enum('flex-start', 'flex-end', 'center', 'space-between', 'space-
 
 <img src="./images/IMG009.png" width="350"> 
 
-##### alignItems
+### alignItems
 
 alignItems 是負責 `水平` 的 
+
+alignItems enum('flex-start', 'flex-end', 'center', 'stretch')
 
 <img src="./images/IMG010.png" width="350">
 <img src="./images/IMG011.png" width="350"> 
@@ -423,12 +425,13 @@ alignItems 是負責 `水平` 的
 	  	<View style={{width: 100,height: 100,justifyContent: 'center',alignItems: 'center',backgroundColor: 'red'}}>
 	    	<Text style = {{color: 'white',}}>alignItems: 'flex-end'</Text>
 	  	</View>
+	</View>
 </View>
 ```
 
 <img src="./images/IMG013.png" width="350"> 
 
-因為他預設值的排列方式垂直的
+因為 React Native 預設值的排列方式垂直的
 
 上個顏色比較好懂
 
@@ -439,3 +442,35 @@ alignItems 是負責 `水平` 的
 <img src="./images/IMG015.png" width="350">
 
 <img src="./images/IMG016.png" width="350">
+
+所以兩個一起來當然可以囉
+
+<img src="./images/IMG017.png" width="350">
+
+### flex
+
+用 flex 來分配整個畫面的比例 
+
+``` javascript
+<View style={{flex: 1, }}>
+	<View style={{flex: 1,justifyContent: 'center',alignItems: 'center',backgroundColor: 'skyblue',}}>
+     	<View style={{width: 200,height: 100,justifyContent: 'center',alignItems: 'center',backgroundColor: 'red'}}>
+         	<Text style = {{color: 'white',}}>flex: 1</Text>
+      	</View>
+  	</View>
+
+  	<View style={{flex: 1,justifyContent: 'center',alignItems: 'center',backgroundColor: 'yellow',}}>
+    	<View style={{width: 200,height: 100,justifyContent: 'center',alignItems: 'center',backgroundColor: 'red'}}>
+    		<Text style = {{color: 'white',}}>flex: 1</Text>
+     	</View>
+  	</View>
+</View>
+```
+<img src="./images/IMG018.png" width="350">
+
+<img src="./images/IMG019.png" width="350">
+
+
+
+
+
