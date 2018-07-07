@@ -122,7 +122,7 @@ const styles = StyleSheet.create({
 
 ![](./images/IMG004.png)
 
-把我寫好的基本頁面檔 page.js 程式碼貼到上面來
+把我寫好的基本頁面檔 [page.js](https://github.com/zz129869523/ReactNative/blob/master/page.js) 程式碼貼到上面來
 
 ![](./images/IMG005.png)
 
@@ -258,13 +258,13 @@ setState() 可以宣告值，修改值也可以
 
 因為onchangeText是即時的 所以上面的text會馬上更改
 
-###Components
+### Components
 
 不過現在又有個問題了 只是一個輸入匡就這麼大 之後看的人會很辛苦 所以我們把它寫一個專屬的元件吧
 
 我們在 Router 底下再建一個資料夾 Components 個人習慣所以叫做UITextView.js
 
-一樣page.js 貼上
+一樣 [page.js](https://github.com/zz129869523/ReactNative/blob/master/page.js) 貼上
 
 ![](./images/IMG007.png)
 
@@ -353,12 +353,89 @@ const styles = StyleSheet.create({
 ![](./images/video003.gif)
 
 
+### 排版 And 樣式
+
+用這麼久終於到很重要的排版與樣式了 
+
+React Native 佈局方式是 FlexBox
+
+#### 排版
+
+學這麼久一定對下面 styles 的
+```javascript 
+justifyContent: 'center',
+ alignItems: 'center',
+```
+很有疑問吧
+
+為了學會排版 我寫了一個 View
+
+##### justifyContent
 
 
+``` javascript
+<View style={{flex: 1,justifyContent: 'flex-start',backgroundColor: '#F5FCFF',}}>
+	<View style={{width: 200,height: 100,justifyContent: 'center',alignItems: 'center',backgroundColor: 'red'}}>
+   		<Text style = {{color: 'white',}}>justifyContent: 'flex-start'</Text>
+    </View>
+</View>
+```
 
+<img src="./images/IMG008.png" width="350"> 
 
+justifyContent 是負責 `垂直` 的 
 
+方式就是管理在自己範圍內的所以元件都必須遵守
 
+第一個 View 規定裡面的 View 必須在 flex-start 的位置上
 
+裡面的 View 規定臉面的 Text 必須 在正中間
 
+justifyContent enum('flex-start', 'flex-end', 'center', 'space-between', 'space-around')
 
+來試試其他的
+
+<img src="./images/IMG009.png" width="350"> 
+
+##### alignItems
+
+alignItems 是負責 `水平` 的 
+
+<img src="./images/IMG010.png" width="350">
+<img src="./images/IMG011.png" width="350"> 
+<img src="./images/IMG012.png" width="350"> 
+
+如果你一次三個的話他會變成這樣
+
+``` javascript
+<View style={{flex: 1, }}>
+	<View style={{flex: 1,alignItems: 'flex-start',backgroundColor: '#F5FCFF',}}>
+		<View style={{width: 100,height: 100,justifyContent: 'center',alignItems: 'center',backgroundColor: 'red'}}>
+    		<Text style = {{color: 'white',}}>alignItems: 'flex-start'</Text>
+  		</View>
+	</View>
+	<View style={{flex: 1,alignItems: 'center',backgroundColor: '#F5FCFF',}}>
+  		<View style={{width: 100,height: 100,justifyContent: 'center',alignItems: 'center',backgroundColor: 'red'}}>
+      		<Text style = {{color: 'white',}}>alignItems: 'center'</Text>
+	  	</View>
+	</View>
+	<View style={{flex: 1,alignItems: 'flex-end',backgroundColor: '#F5FCFF',}}>
+	  	<View style={{width: 100,height: 100,justifyContent: 'center',alignItems: 'center',backgroundColor: 'red'}}>
+	    	<Text style = {{color: 'white',}}>alignItems: 'flex-end'</Text>
+	  	</View>
+</View>
+```
+
+<img src="./images/IMG013.png" width="350"> 
+
+因為他預設值的排列方式垂直的
+
+上個顏色比較好懂
+
+<img src="./images/IMG014.png" width="350">
+
+外面的 View style 加上{{flexDirection:'row',}} 就行了
+
+<img src="./images/IMG015.png" width="350">
+
+<img src="./images/IMG016.png" width="350">
