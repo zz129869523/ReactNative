@@ -145,7 +145,7 @@ export default class App extends Component<Props> {
 }
 ```
 
-![](./images/IMG006.png =250x) 
+<img src="./images/IMG006.png" width="350"> 
 
 
 
