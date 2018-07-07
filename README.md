@@ -362,7 +362,7 @@ React Native 佈局方式是 FlexBox
 ### 排版
 
 學這麼久一定對下面 styles 的
-```javascript 
+``` html 
 justifyContent: 'center',
  alignItems: 'center',
 ```
@@ -373,7 +373,7 @@ justifyContent: 'center',
 ### justifyContent
 
 
-``` javascript
+``` html
 <View style={{flex: 1,justifyContent: 'flex-start',backgroundColor: '#F5FCFF',}}>
 	<View style={{width: 200,height: 100,justifyContent: 'center',alignItems: 'center',backgroundColor: 'red'}}>
    		<Text style = {{color: 'white',}}>justifyContent: 'flex-start'</Text>
@@ -409,7 +409,7 @@ alignItems enum('flex-start', 'flex-end', 'center', 'stretch')
 
 如果你一次三個的話他會變成這樣
 
-``` javascript
+``` html
 <View style={{flex: 1, }}>
 	<View style={{flex: 1,alignItems: 'flex-start',backgroundColor: '#F5FCFF',}}>
 		<View style={{width: 100,height: 100,justifyContent: 'center',alignItems: 'center',backgroundColor: 'red'}}>
@@ -456,14 +456,14 @@ alignItems enum('flex-start', 'flex-end', 'center', 'stretch')
 
 	<View style={{flex: 1,justifyContent: 'center',alignItems: 'center',backgroundColor: 'skyblue',}}>
 		<View style={{width: 200,height: 100,justifyContent: 'center',alignItems: 'center',backgroundColor: 'red'}}>
-     		<Text style = {{color: 'white',}}>flex: 1</Text>
+     			<Text style = {{color: 'white',}}>flex: 1</Text>
 		</View>
 	</View>
 
   	<View style={{flex: 1,justifyContent: 'center',alignItems: 'center',backgroundColor: 'yellow',}}>
-    	<View style={{width: 200,height: 100,justifyContent: 'center',alignItems: 'center',backgroundColor: 'red'}}>
-    		<Text style = {{color: 'white',}}>flex: 1</Text>
-     	</View>
+    		<View style={{width: 200,height: 100,justifyContent: 'center',alignItems: 'center',backgroundColor: 'red'}}>
+    			<Text style = {{color: 'white',}}>flex: 1</Text>
+     		</View>
   	</View>
   	
 </View>
