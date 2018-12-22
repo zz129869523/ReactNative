@@ -37,7 +37,7 @@ React Native 的中文教學實在太少，這邊先教大家最基礎的，架�
 #### iOS
 
 ```
-都用 MAC 了還要我教啊 (不會後面還有救)
+用terminal開也可以 只是要google一下 建議用後面的方法 比較簡單
 ```
 
 ### 開啟你的 APP 吧
@@ -52,8 +52,8 @@ React Native 的中文教學實在太少，這邊先教大家最基礎的，架�
     react-native run-android
     
 #### IOS
-    react-native run-ios (mac會自動幫你開啟虛擬機 不怕不怕 沒有開啟的話就在打一次
-
+    react-native run-ios --simulator="iPhone 6" (可依照想要的虛擬機開啟 例如"iPhone XS Max")
+    
 成功之後大家應該會看到這樣
 
 ![](./images/IMG001.png)
